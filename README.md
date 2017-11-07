@@ -11,13 +11,6 @@ Cloudflare UAM Bypasser PHP Free, Open-Source.
 
 # Sample Usage
 ```php
-/**
- *  EzCFBypass 1.0 - Cloudflare UAM Bypasser PHP Free, Open-Source.
- *
- *  @author Alemalakra
- *  @version 1.0
- */
-
 // Include the class..
 require_once "EzCFBypass.php";
 
