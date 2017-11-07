@@ -20,19 +20,14 @@ echo htmlentities($cf->get("/"));
 ```
 # Advanced Usage
 ```php
-// Before of all your CODE.
-require('xwaf.php');
-$xWAF = new xWAF();
-// Cloudflare Option [Optional]
-$xWAF->useCloudflare();
-// useBlazingfast Option [Optional]
-$xWAF->useBlazingfast();
+// Include the class..
+require_once "EzCFBypass.php";
 
-// Check separated types.
-$xWAF->checkGET();
-$xWAF->checkPOST();
-$xWAF->checkCOOKIE();
-// Your code below.
+$cf = new \Alemalakra\Bypass\CloudFlare("nstress.com", array('ssl' => true));
+// Simple POST Request.
+echo htmlentities($cf->post("/login.php", array('username' => 'test', 'password' => 'test')));
+// Cookie ARRAY List.
+print_r($cf->getCookies());
 ```
 
 # Requirements
