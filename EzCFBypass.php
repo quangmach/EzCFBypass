@@ -32,9 +32,9 @@ class CloudFlare {
       }
     }
     $this->target = $targetSite;
-
+    $jar = new \GuzzleHttp\Cookie\FileCookieJar("/tmp/ezcfbypass");
     $config = [
-      "cookies" => true,
+      "cookies" => $jar,
       "http_errors" => false
     ];
     $this->client = new \GuzzleHttp\Client($config);
@@ -73,12 +73,11 @@ class CloudFlare {
     );
     if(!$this->cookieExists)
     {
-      if(!$this->verifyPage($this->request))
+      if($this->verifyPage($this->request))
       {
-        throw new \Exception("EzCFBypass: This website is not protected by CloudFlare or the UAM is not enabled", 1);
+        sleep(8); // 8 Seconds, due cloudflare use 5-7 seconds
+        $this->getCookie();
       }
-      sleep(8); // 8 Seconds, due cloudflare use 5-7 seconds
-      $this->getCookie();
     }
   }
   private function parseRefresh($header) // parse header
